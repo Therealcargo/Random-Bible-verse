@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Bible Verse</title>
+    <style>
+      body {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Random Bible Verse:</h1>
+    <p id="verse"></p>
+    
+    <script>
+      // Define the API endpoint
+      const endpoint = "https://labs.bible.org/api/?passage=random&type=json";
+      
+      // Make a request to the API and retrieve a random Bible verse
+      fetch(endpoint)
+        .then(response => response.json())
+        .then(data => {
+          const bibleVerse = `${data[0].bookname} ${data[0].chapter}:${data[0].verse} - ${data[0].text}`;
+          document.getElementById("verse").innerHTML = bibleVerse;
+        })
+        .catch(error => console.error(error));
+    </script>
+  </body>
+</html>
